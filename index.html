@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vademecum PNES – MMG</title>
+<style>
+:root{
+  --navy:#1B3A5C;--teal:#1A7A8A;--sky:#D6EEF2;--mint:#E8F7F4;
+  --amber:#E6A817;--amber-lt:#FEF4DC;--green:#2A7A4B;--green-lt:#E6F5EC;
+  --red:#C0392B;--red-lt:#FDEDEB;--white:#fff;
+  --g50:#F7F8FA;--g200:#E2E6ED;--g500:#6B7785;--g700:#3A4454;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--g50);color:var(--g700);}
+.hdr{background:var(--navy);padding:32px 40px 28px;position:relative;overflow:hidden}
+.hdr::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 50%,rgba(26,122,138,.18) 100%);pointer-events:none}
+.hdr-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#A8D8E0;margin-bottom:16px}
+.hdr h1{font-size:26px;font-weight:700;color:#fff;line-height:1.25;max-width:600px}
+.hdr h1 span{color:#5EC8D8}
+.hdr-sub{font-size:13px;color:rgba(255,255,255,.6);margin-top:8px;font-weight:300}
+.meta-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap}
+.meta-chip{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.08);border-radius:8px;padding:7px 13px;font-size:12px;color:rgba(255,255,255,.8)}
+.meta-chip svg{width:13px;height:13px;stroke:#5EC8D8;fill:none;stroke-width:2;flex-shrink:0}
+.main{max-width:880px;margin:0 auto;padding:36px 24px 56px}
+.card{background:#fff;border:1px solid var(--g200);border-radius:14px;margin-bottom:22px;overflow:hidden}
+.card-hdr{display:flex;align-items:center;gap:13px;padding:18px 22px;border-bottom:1px solid var(--g200);background:#FAFBFC}
+.ic{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ic svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.ic-navy{background:var(--navy)}.ic-teal{background:var(--teal)}.ic-green{background:var(--green)}
+.ic-amber{background:var(--amber)}.ic-red{background:var(--red)}.ic-purple{background:#6B4FA0}
+.card-hdr h2{font-size:15px;font-weight:700;color:var(--navy);line-height:1.3}
+.card-hdr p{font-size:11.5px;color:var(--g500);margin-top:2px}
+.card-body{padding:20px 22px}
+.hl{display:flex;gap:13px;border-radius:10px;padding:14px 16px;margin-bottom:14px}
+.hl-green{background:var(--green-lt);border:1.5px solid #9ED4B8}
+.hl-amber{background:var(--amber-lt);border:1.5px solid #F0CB80}
+.hl-red{background:var(--red-lt);border:1.5px solid #ECA59D}
+.hl em{font-size:22px;font-style:normal;flex-shrink:0;margin-top:1px}
+.hl strong{display:block;font-size:13.5px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.hl span{font-size:12.5px;color:var(--g700);line-height:1.5}
+.blist{list-style:none;display:flex;flex-direction:column;gap:11px}
+.blist li{display:flex;gap:11px;font-size:13.5px;line-height:1.55}
+.bdot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:5px}
+.req-list{display:flex;flex-direction:column;gap:9px}
+.req-item{display:flex;gap:11px;background:var(--g50);border:1px solid var(--g200);border-radius:10px;padding:12px 14px}
+.req-n{width:27px;height:27px;border-radius:7px;background:var(--navy);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.req-item strong{display:block;font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:2px}
+.req-item span{font-size:11.5px;color:var(--g500);line-height:1.5}
+.icd-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;margin-top:14px}
+.icd-card{background:var(--sky);border-radius:10px;padding:13px 15px;text-align:center}
+.icd-card .lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--teal);margin-bottom:3px}
+.icd-card .val{font-family:Menlo,Consolas,monospace;font-size:15px;font-weight:700;color:var(--navy)}
+.icd-card .dsc{font-size:10.5px;color:var(--g500);margin-top:3px;line-height:1.35}
+.flow{display:flex;align-items:stretch;gap:0}
+.flow-step{flex:1;background:var(--g50);border:1px solid var(--g200);border-radius:12px;padding:16px 12px;text-align:center}
+.step-icon{font-size:26px;margin-bottom:6px}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--teal);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 8px}
+.step-title{font-size:12.5px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.step-desc{font-size:11px;color:var(--g500);line-height:1.4}
+.flow-arr{display:flex;align-items:center;padding:0 5px;color:var(--teal);flex-shrink:0}
+.flow-arr svg{width:20px;height:20px;fill:none;stroke:var(--teal);stroke-width:2.5}
+.orario-banner{background:var(--navy);border-radius:12px;padding:14px 20px;display:flex;align-items:center;gap:16px;margin-bottom:12px}
+.orario-banner .o-lbl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#5EC8D8;margin-bottom:2px}
+.orario-banner .o-time{font-family:Menlo,Consolas,monospace;font-size:21px;font-weight:700;color:#fff}
+.orario-banner .o-note{font-size:11px;color:rgba(255,255,255,.55);margin-top:2px}
+.days-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px}
+.day-card{background:var(--mint);border:1px solid #9ED4C0;border-radius:11px;padding:14px 17px;display:flex;align-items:center;gap:12px}
+.day-card .d-icon{font-size:26px}
+.day-card .d-name{font-size:15px;font-weight:700;color:var(--navy)}
+.day-card .d-sub{font-size:11px;color:var(--g500);margin-top:2px}
+.chk-item{display:flex;align-items:center;gap:11px;padding:10px 14px;background:var(--g50);border:1px solid var(--g200);border-radius:10px;margin-bottom:7px;font-size:12.5px;color:var(--g700)}
+.img-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--g200);margin-top:12px}
+.img-wrap img{width:100%;display:block}
+.img-cap{background:var(--g50);border-top:1px solid var(--g200);padding:8px 14px;font-size:11px;color:var(--g500);font-style:italic;text-align:center}
+.note-box{background:#F0F4F8;border:1px solid #CBD5E0;border-left:4px solid var(--teal);border-radius:8px;padding:12px 16px;margin-bottom:18px;font-size:11.5px;color:var(--g700);line-height:1.6}
+.note-box strong{color:var(--navy)}
+.top-icd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px;margin-bottom:18px}
+.chip{display:flex;align-items:center;gap:8px;background:#EEF7F8;border:1px solid #9ED4C0;border-radius:8px;padding:7px 11px;cursor:pointer;transition:background .15s}
+.chip:hover,.chip.active{background:var(--sky);border-color:var(--teal)}
+.chip-code{font-family:Menlo,Consolas,monospace;font-size:11.5px;font-weight:700;color:var(--teal);flex-shrink:0}
+.chip-diag{font-size:11px;color:var(--g700);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chip-count{font-size:10px;color:var(--g500);background:var(--g200);border-radius:10px;padding:1px 6px;flex-shrink:0}
+.search-wrap{position:relative;margin-bottom:11px}
+.search-wrap input{width:100%;padding:10px 36px 10px 36px;border:1.5px solid var(--g200);border-radius:10px;font-family:inherit;font-size:13px;color:var(--g700);background:var(--g50);outline:none;transition:border-color .2s}
+.search-wrap input:focus{border-color:var(--teal)}
+.search-icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:15px;height:15px;stroke:var(--g500);fill:none;stroke-width:2;pointer-events:none}
+.clear-btn{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--g500);font-size:14px;display:none;padding:2px 6px;border-radius:4px}
+.clear-btn:hover{background:var(--g200)}
+#count-bar{font-size:11px;color:var(--g500);text-align:right;margin-bottom:10px}
+.tbl-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--g200)}
+#ftable{width:100%;border-collapse:collapse;font-size:12.5px}
+#ftable thead tr{background:var(--navy)}
+#ftable thead th{background-color: var(--navy);padding:11px 14px;text-align:left;#ffffff;font-weight:600;letter-spacing:.03em;border-bottom: 3px solid var(--teal)}
+#ftable tbody td{padding:9px 14px;border-bottom:1px solid var(--g200);vertical-align:top}
+#ftable tbody tr{cursor:pointer;transition:background .1s}
+#ftable tbody tr:hover{background:#EEF7F8 !important}
+.no-res{display:none;text-align:center;padding:28px;color:var(--g500);font-size:13px}
+#modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center;padding:16px}
+#modal-overlay.open{display:flex}
+#modal-box{background:#fff;border-radius:16px;max-width:600px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal-head{background:var(--navy);border-radius:16px 16px 0 0;padding:18px 22px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+#modal-title{font-size:14px;font-weight:700;color:#fff}
+#modal-brand{font-size:11.5px;color:#5EC8D8;margin-top:2px}
+#modal-formul{font-size:11px;color:rgba(255,255,255,.6);margin-top:4px;line-height:1.4}
+.modal-close{background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:8px;width:30px;height:30px;cursor:pointer;font-size:16px;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:rgba(255,255,255,.25)}
+.modal-body{padding:20px 22px}
+.modal-lbl{font-size:10.5px;font-weight:700;color:var(--g500);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+
+.modal-icd-wrap{border-radius:10px;overflow:hidden;border:1px solid var(--g200)}
+#modal-icd{width:100%;border-collapse:collapse}
+#modal-icd thead tr{background:var(--g50)}
+#modal-icd thead th{padding:8px 12px;text-align:left;font-size:11px;color:var(--g500);border-bottom:1px solid var(--g200)}
+#modal-icd tbody td{padding:7px 12px;font-size:12px;border-bottom:1px solid var(--g200)}
+.icd-code{font-family:Menlo,Consolas,monospace;font-weight:700;color:var(--teal);background:var(--sky);border-radius:4px;padding:1px 6px}
+.footer{background:var(--navy);padding:18px 40px;text-align:center;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.02em}
+@media(max-width:600px){
+  .hdr{padding:22px 18px}.main{padding:22px 14px 40px}
+  .icd-row{grid-template-columns:1fr}.flow{flex-direction:column}
+  .flow-arr{transform:rotate(90deg);margin:4px auto}
+  .days-row{grid-template-columns:1fr}.top-icd-grid{grid-template-columns:1fr}
+}
+.main {
+    max-width: 1200px !important; 
+}
+
+.main-container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    max-width: 100% !important;
+}
+
+.tbl-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    border: 1px solid var(--g200) !important;
+    border-radius: 16px !important; /* Mantiene gli angoli arrotondati */
+    box-shadow: 0 4px 20px rgba(0,0,0,.03) !important; /* Mantiene l'ombra */
+    margin: 0 !important; 
+}
+
+#ftable thead th {
+    background-color: var(--navy) !important;
+    color: #ffffff !important;
+    border-bottom: 3px solid var(--teal) !important;
+}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-badge">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    Documento Operativo
+  </div>
+  <h1>Progetto <span>PNES</span> — Ruolo del Medico di Medicina Generale</h1>
+  <p class="hdr-sub">Guida operativa per la corretta gestione delle prescrizioni e della presa in carico del paziente</p>
+  <div class="meta-row">
+    <div class="meta-chip">
+      <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+      Destinatari: MMG
+    </div>
+    <div class="meta-chip">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Annualità corrente
+    </div>
+    <div class="meta-chip">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Progetto PNES
+    </div>
+  </div>
+</div>
+
+<div class="main">
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-navy"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div><h2>Cosa è richiesto al MMG</h2><p>Ruolo e responsabilità nel Progetto PNES</p></div>
+  </div>
+  <div class="card-body">
+    <ul class="blist">
+      <li><span class="bdot"></span><span>I pazienti saranno <strong>individuati e arruolati dagli infermieri del Distretto</strong> secondo i criteri del Progetto PNES.</span></li>
+      <li><span class="bdot"></span><span>Saranno inoltre coinvolti i <strong>pazienti già arruolati nelle precedenti annualità</strong> che risultino ancora eleggibili.</span></li>
+      <li><span class="bdot"></span><span>Al MMG è richiesto di <strong>prescrivere i farmaci previsti dal progetto</strong> con la corretta codifica ICD-9-CM.</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-purple"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+    <div><h2>Chi può ricevere i farmaci a titolo gratuito</h2><p>Criteri di eleggibilità — persone in situazioni di fragilità socio-economica</p></div>
+  </div>
+  <div class="card-body">
+    <div class="img-wrap">
+      <img src="img1.png" alt="Soggetti eleggibili Progetto PNES">
+      <div class="img-cap">Categorie eleggibili: ISEE &lt; 10.000 €, STP, ENI e altre categorie vulnerabili</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-green"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div><h2>Punto Fondamentale</h2><p>Prescrizione con codice ICD-9-CM corretto</p></div>
+  </div>
+  <div class="card-body">
+    <div class="hl hl-green">
+      <em>✅</em>
+      <div><strong>Obbligo di codifica ICD-9-CM</strong><span>La prescrizione deve riportare il <strong>corretto codice ICD-9-CM</strong> correlato all'indicazione clinica prevista dal progetto.</span></div>
+    </div>
+    <p style="font-size:13px;font-weight:700;color:var(--navy);margin-bottom:11px;">La corretta codifica ICD-9-CM è condizione necessaria per:</p>
+    <div class="req-list">
+      <div class="req-item"><div class="req-n">1</div><div><strong>Garantire l'appropriatezza prescrittiva</strong><span>Il codice diagnostico deve essere coerente con l'indicazione clinica prevista dal protocollo PNES.</span></div></div>
+      <div class="req-item"><div class="req-n">2</div><div><strong>Consentire la dispensazione del farmaco</strong><span>Senza il codice corretto il farmaco non potrà essere erogato dalla farmacia territoriale.</span></div></div>
+      <div class="req-item"><div class="req-n">3</div><div><strong>Assicurare la corretta presa in carico del paziente</strong><span>La codifica permette il tracciamento del percorso clinico e la rendicontazione del progetto.</span></div></div>
+    </div>
+    <div class="icd-row">
+      <div class="icd-card"><div class="lbl">Verifica</div><div class="val">ICD-9-CM</div><div class="dsc">Codice correlato all'indicazione clinica</div></div>
+      <div class="icd-card"><div class="lbl">Farmaco</div><div class="val">Lista PNES</div><div class="dsc">Verificare l'elenco aggiornato del progetto</div></div>
+      <div class="icd-card"><div class="lbl">Abbinamento</div><div class="val">Obbligatorio</div><div class="dsc">Codice + farmaco devono corrispondere</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-teal"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+    <div><h2>Come compilare la ricetta</h2><p>Guida visiva — valida per ricette dematerializzate e cartacee</p></div>
+  </div>
+  <div class="card-body">
+    <div class="img-wrap">
+      <img src="img2.png" alt="Come compilare la ricetta PNES">
+      <div class="img-cap">Il Quesito Diagnostico ICD-9 (punto 4) è obbligatorio e deve corrispondere all'indicazione clinica del progetto</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+    <div><h2>Percorso del Paziente</h2><p>Dall'arruolamento al ritiro del farmaco</p></div>
+  </div>
+  <div class="card-body">
+    <div class="flow">
+      <div class="flow-step"><div class="step-icon">🏥</div><div class="step-num">1</div><div class="step-title">Arruolamento</div><div class="step-desc">Infermieri del Distretto identificano il paziente eleggibile</div></div>
+      <div class="flow-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="flow-step"><div class="step-icon">📋</div><div class="step-num">2</div><div class="step-title">Prescrizione MMG</div><div class="step-desc">Con corretto codice ICD-9-CM associato all'indicazione clinica</div></div>
+      <div class="flow-arr"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+      <div class="flow-step"><div class="step-icon">💊</div><div class="step-num">3</div><div class="step-title">Ritiro Farmacia</div><div class="step-desc">Dispensazione presso la farmacia territoriale nei giorni e orari stabiliti</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-amber"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+    <div><h2>Dispensazione</h2><p>Giorni e orari di ritiro presso la farmacia territoriale</p></div>
+  </div>
+  <div class="card-body">
+    <div class="orario-banner">
+      <div style="font-size:28px">🕙</div>
+      <div>
+        <div class="o-lbl">Orario di erogazione</div>
+        <div class="o-time">10:00 – 12:00</div>
+        <div class="o-note">Tutti i giorni di apertura del servizio</div>
+      </div>
+    </div>
+    <div class="days-row">
+      <div class="day-card"><div class="d-icon">🗓️</div><div><div class="d-name">Lunedì</div><div class="d-sub">Distretto 20 · 10:00–12:00</div></div></div>
+      <div class="day-card"><div class="d-icon">🗓️</div><div><div class="d-name">Martedì</div><div class="d-sub">Distretto 20 · 10:00–12:00</div></div></div>
+      <div class="day-card"><div class="d-icon">🗓️</div><div><div class="d-name">Venerdì</div><div class="d-sub">Distretto 23 · 10:00–12:00</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-hdr">
+    <div class="ic ic-red"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+    <div><h2>⚠️ Attenzione</h2><p>Verifiche obbligatorie prima di ogni prescrizione</p></div>
+  </div>
+  <div class="card-body">
+    <div class="hl hl-red">
+      <em>⚠️</em>
+      <div><strong>Verificare sempre prima della prescrizione</strong><span>Assicurarsi che il farmaco prescritto <strong>rientri nell'elenco del Progetto PNES</strong> e che sia associato al <strong>corretto codice ICD-9-CM</strong>. La mancata corrispondenza impedirà la dispensazione e la corretta presa in carico del paziente.</span></div>
+    </div>
+    <div class="chk-item">☑️ &nbsp; Il farmaco è incluso nell'elenco ufficiale del Progetto PNES?</div>
+    <div class="chk-item">☑️ &nbsp; Il codice ICD-9-CM è corretto e coerente con l'indicazione clinica prevista?</div>
+    <div class="chk-item">☑️ &nbsp; Il paziente risulta correttamente arruolato o ancora eleggibile?</div>
+  </div>
+</div>
+
+<div class="card" id="sec-farmaci">
+  <div class="card-hdr">
+    <div class="ic ic-teal"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2V9M9 21H5a2 2 0 0 1-2-2V9m0 0h18"/></svg></div>
+    <div><h2>Elenco Farmaci del Progetto PNES</h2><p>78 farmaci con formulazioni, marchi di riferimento e codici ICD-9-CM</p></div>
+  </div>
+  <div class="card-body">
+
+    <div class="note-box">
+      <strong>Note preliminari:</strong> I codici ICD-9 costituiscono indicazioni orientative consolidate ai fini dell'appropriatezza prescrittiva. I marchi commerciali sono indicati a titolo esemplificativo; ove disponibili saranno privilegiati i medicinali equivalenti o i prodotti a costo più contenuto.
+    </div>
+
+    <div class="hl hl-amber" style="margin-bottom:18px;">
+      <em>ℹ️</em>
+      <div><strong>Condizioni di erogazione</strong><span>ISEE ≤ 10.000 € (italiani e STP) · Ricetta completa di: dati paziente, codice fiscale, posologia e diagnosi ICD-9 · Erogazione gratuita farmaci fascia A fuori nota AIFA e fascia C.</span></div>
+    </div>
+
+
+  <style>
+    :root {
+      --navy: #1B3A5C; --teal: #1A7A8A; --sky: #D6EEF2; --mint: #E8F7F4;
+      --amber: #E6A817; --amber-lt: #FEF4DC; --green: #2A7A4B; --green-lt: #E6F5EC;
+      --red: #C0392B; --red-lt: #FDEDEB; --white: #fff;
+      --g50: #F7F8FA; --g200: #E2E6ED; --g500: #6B7785; --g700: #3A4454;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; background: var(--g50); color: var(--g700); }
+    
+    .hdr { background: var(--navy); padding: 32px 40px 28px; position: relative; overflow: hidden; }
+    .hdr::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 50%, rgba(26,122,138,.18) 100%); pointer-events: none; }
+    .hdr-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; }
+    .hdr h1 { color: var(--white); font-size: 24px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.5px; }
+    .hdr p { color: rgba(255,255,255,.8); font-size: 14px; line-height: 1.5; }
+    
+    .main-container { max-width: 1200px; margin: 0 auto; padding: 24px 40px; }
+    .section-title { font-size: 14px; font-weight: 700; text-transform: uppercase; color: var(--teal); letter-spacing: 1px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--g200); }
+    
+    .chips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-bottom: 32px; }
+    .chip { background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 12px 16px; cursor: pointer; display: flex; flex-direction: column; gap: 4px; transition: all .2s cubic-bezier(0.4,0,0.2,1); box-shadow: 0 1px 2px rgba(0,0,0,.02); }
+    .chip:hover { border-color: var(--teal); background: var(--mint); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(26,122,138,.08); }
+    .chip.active { background: var(--teal); border-color: var(--teal); box-shadow: 0 4px 12px rgba(26,122,138,.2); }
+    .chip.active .chip-code { color: var(--white); }
+    .chip.active .chip-desc { color: rgba(255,255,255,.85); }
+    .chip-code { font-family: monospace; font-size: 13px; font-weight: 700; color: var(--teal); transition: color .2s; }
+    .chip-desc { font-size: 12px; color: var(--g500); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; transition: color .2s; }
+    
+    .search-wrapper { position: relative; margin-bottom: 12px; }
+    .search-input { width: 100%; background: var(--white); border: 1px solid var(--g200); border-radius: 12px; padding: 14px 16px 14px 44px; font-size: 15px; color: var(--g700); transition: all .2s; outline: none; box-shadow: 0 1px 2px rgba(0,0,0,.02); }
+    .search-input:focus { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(26,122,138,.12), 0 1px 2px rgba(0,0,0,.02); }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--g500); pointer-events: none; }
+    .clear-btn { position: absolute; right: 16px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--g500); cursor: pointer; padding: 4px; display: none; border-radius: 50%; font-size: 14px; }
+    .clear-btn:hover { background: var(--g50); color: var(--g700); }
+    
+    #count-bar { font-size: 13px; color: var(--g500); margin-bottom: 16px; font-weight: 500; }
+    .no-res { display: none; background: var(--white); border: 1px solid var(--g200); border-radius: 16px; padding: 40px; text-align: center; color: var(--g500); font-size: 15px; box-shadow: 0 4px 20px rgba(0,0,0,.03); }
+    
+    .tbl-card { background: var(--white); border: 1px solid var(--g200); border-radius: 16px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,.03); }
+    .tbl-scroll { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+    th { background: var(--g50); color: var(--g500); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; padding: 14px 20px; border-bottom: 1px solid var(--g200); }
+    td { padding: 16px 20px; border-bottom: 1px solid var(--g200); vertical-align: top; line-height: 1.45; }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(26,122,138,.01); }
+    
+    .p-attivo { font-weight: 700; color: var(--navy); font-size: 14px; margin-bottom: 4px; }
+    .m-commerciale { font-size: 13px; color: var(--teal); background: var(--sky); padding: 2px 8px; border-radius: 6px; display: inline-block; font-weight: 500; margin-top: 4px; }
+    .f-farmaceutica { font-size: 13px; color: var(--g700); }
+    
+    .icd-badge-container { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+    .icd-badge { display: inline-block; background: var(--mint); color: var(--teal); border: 1px solid #9ED4C0; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-family: Menlo, Consolas, monospace; font-weight: 700; white-space: nowrap; }
+    .icd-more { font-size: 12px; color: var(--g500); margin-left: 4px; font-weight: 500; }
+
+    /* Modale Unificata */
+    #modal-overlay { position: fixed; inset: 0; background: rgba(27, 58, 92, 0.4); backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
+    #modal-overlay.open { opacity: 1; pointer-events: auto; }
+    #modal-box { background: var(--white); width: 90%; max-width: 650px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.15); display: flex; flex-direction: column; max-height: 85vh; transform: translateY(20px); transition: transform 0.2s ease; overflow: hidden; }
+    #modal-overlay.open #modal-box { transform: translateY(0); }
+    .modal-head { padding: 24px 28px; background: var(--g50); border-bottom: 1px solid var(--g200); display: flex; justify-content: space-between; align-items: flex-start; }
+    #modal-title { font-size: 20px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    #modal-brand { font-size: 14px; color: var(--teal); font-weight: 600; margin-bottom: 8px; }
+    #modal-formul { font-size: 13px; color: var(--g500); line-height: 1.4; }
+    .modal-close { background: none; border: none; font-size: 20px; color: var(--g500); cursor: pointer; padding: 4px; line-height: 1; border-radius: 50%; }
+    .modal-close:hover { background: var(--g200); color: var(--g700); }
+    .modal-body { padding: 24px 28px; overflow-y: auto; flex: 1; }
+    .modal-lbl { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--g500); letter-spacing: 0.5px; margin-bottom: 12px; }
+    .modal-icd-wrap { border: 1px solid var(--g200); border-radius: 12px; overflow: hidden; }
+    .modal-table { width: 100%; border-collapse: collapse; }
+    .modal-table th { padding: 10px 16px; background: var(--g50); border-bottom: 1px solid var(--g200); font-size: 11px; }
+    .modal-table td { padding: 12px 16px; border-bottom: 1px solid var(--g200); font-size: 13px; }
+    .modal-table tr:last-child td { border-bottom: none; }
+    .modal-code-cell { font-family: monospace; font-weight: 700; color: var(--teal); background: var(--mint); padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+
+    .footer { max-width: 1200px; margin: 0 auto; padding: 24px 40px; text-align: center; color: var(--g500); font-size: 12px; }
+
+    @media(max-width:768px) {
+      .hdr { padding: 20px; }
+      .main-container { padding: 16px; }
+      .chips-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="hdr-content">
+    <h1>Vademecum PNES – MMG</h1>
+    <p>Prontuario orientativo farmaceutico basato sui quesiti diagnostici e codifiche ICD-9-CM.</p>
+  </div>
+</div>
+
+<div class="main-container">
+  <div class="section-title">Filtri Rapidi ICD-9</div>
+  <div id="top-chips" class="chips-grid"></div>
+
+  <div class="section-title">Elenco Farmaci</div>
+  <div class="search-wrapper">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="farmaco-search" class="search-input" placeholder="Cerca per principio attivo, specialità, codice ICD-9 o diagnosi..." oninput="onSearch()">
+    <button id="clear-btn" class="clear-btn" onclick="clearSearch()">✕</button>
+  </div>
+  
+  <div id="count-bar"></div>
+
+  <div class="tbl-card" id="ftable">
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <!-- COLONNA UNIFICATA -->
+            <th style="width:35%">Principio Attivo / Esempio Commerciale</th>
+            <th style="width:25%">Formulazione Indicativa</th>
+            <th style="width:40%">Associazione ICD-9-CM Principali</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+    </div>
+  </div>
+  
+  <div class="no-res" id="no-results">Nessun farmaco trovato per questa ricerca.</div>
+</div>
+
+<div id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div id="modal-box">
+    <div class="modal-head">
+      <div>
+        <div id="modal-title"></div>
+        <div id="modal-brand"></div>
+        <div id="modal-formul"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-lbl">Codici ICD-9-CM associati completi</div>
+      <div class="modal-icd-wrap">
+        <table class="modal-table">
+          <thead>
+            <tr>
+              <th style="width:20%; text-align:left;">Codice</th>
+              <th style="width:80%; text-align:left;">Quesito diagnostico</th>
+            </tr>
+          </thead>
+          <tbody id="modal-icd-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  Progetto PNES &nbsp;·&nbsp; Vademecum per il Medico di Medicina Generale &nbsp;·&nbsp; Ad uso interno
+</div>
+
+<script>
+var topIcd = [
+  ["300.00", "Stato ansioso non specificato"],
+  ["780.52", "Insonnia non specificata"],
+  ["724.2", "Lombalgia"],
+  ["787.91", "Diarrea"],
+  ["784.0", "Cefalea"],
+  ["625.3", "Dismenorrea"],
+  ["780.6", "Febbre"],
+  ["466.0", "Bronchite acuta"]
+];
+
+var farmaci = [
+  [
+    "ACETILCISTEINA",
+    "Fluimucil®",
+    "Compresse effervescenti 600 mg<br>Soluzione per nebulizzatore 300mg/3 ml<br>Sciroppo 600mg/15 ml",
+    [
+      ["466.0", "Bronchite acuta"],
+      ["466.1", "Bronchiolite acuta da altri agenti infettivi"],
+      ["491.0", "Bronchite cronica semplice"],
+      ["491.1", "Bronchite cronica mucopurulenta"],
+      ["491.20", "Bronchite cronica ostruttiva senza esacerbazione"],
+      ["491.21", "Bronchite cronica ostruttiva con esacerbazione"],
+      ["491.22", "Bronchite cronica ostruttiva con bronchite acuta"],
+      ["491.9", "Bronchite cronica non specificata"],
+      ["490", "Bronchite non specificata se acuta o cronica"]
+    ]
+  ],
+  [
+    "ACICLOVIR",
+    "Aciclin®",
+    "Crema 5%",
+    [
+      ["054.9", "Herpes simplex senza menzioni di complicazioni"],
+      ["054.8", "Herpes simplex con complicazioni non specificate"],
+      ["054.10", "Herpes genitale non specificato"],
+      ["054.19", "Altre forme di herpes genitale"]
+    ]
+  ],
+  [
+    "ACIDO FUSIDICO",
+    "Fucidin®",
+    "Crema 20 mg/g tubo 30 g",
+    [
+      ["686.9", "Infezione localizzate non specificate della cute e del tessuto sottocutaneo"],
+      ["704.8", "Altre malattie specificate dei peli e follicoli piliferi"],
+      ["680.9", "Foruncolo e favo di altre sedi non specificate"],
+      ["681.02", "Onichia e paronichia delle dita della mano"],
+      ["958.3", "Infezione post-traumatica non classificata altrove"],
+      ["919.3", "Vescicola con infezione"],
+      ["707.9", "Ulcerazioni croniche di sedi non specificate"]
+    ]
+  ],
+  [
+    "ACIDO IALURONICO SALE SODICO",
+    "Connettivina®",
+    "Garze impregnate 2 mg, 10x10 cm<br>Crema 2 mg/g, tubo 15 g",
+    [
+      ["879.8", "Ferite (multiple) di sede non specificata senza menzioni di complicazioni"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"],
+      ["919.0", "Abrasione o ustione da attrito senza menzione di infezione"],
+      ["709.8", "Alterazioni specificate della cute"],
+      ["949.1", "Eritema di primo grado"],
+      ["949.2", "Vescicole, perdite dell'epidermide II grado"],
+      ["707.9", "Ulcerazioni croniche di sedi non specificate"],
+      ["707.0", "Ulcerazioni da decubito, sito non specificato"],
+      ["454.0", "Varici degli arti inferiori con ulcera"],
+      ["998.83", "Ferita chirurgica non cicatrizzata"],
+      ["998.32", "Rottura di ferita chirurgica esterna"]
+    ]
+  ],
+  [
+    "ALPRAZOLAM",
+    "Xanax®",
+    "Compresse 0,25 mg<br>Compresse 0,50 mg<br>Compresse 1 mg<br>Gocce orali 0,75 mg/ml, flacone 20 ml<br>Compresse a rilascio prolungato 0,5 mg<br>Compresse a rilascio prolungato 1 mg<br>Compresse a rilascio prolungato 2 mg",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"]
+    ]
+  ],
+  [
+    "AMBROXOLO",
+    "Fluibron®",
+    "Soluzione per aerosol 15 mg/2 ml, 10 fiale<br>Sciroppo 15 mg/5 ml flacone 200 ml",
+    [
+      ["466.0", "Bronchite acuta"],
+      ["466.1", "Bronchiolite acuta da altri agenti infettivi"],
+      ["491.0", "Bronchite cronica semplice"],
+      ["491.1", "Bronchite cronica mucopurulenta"],
+      ["491.20", "Bronchite cronica ostruttiva senza esacerbazione"],
+      ["491.21", "Bronchite cronica ostruttiva con esacerbazione"],
+      ["491.22", "Bronchite cronica ostruttiva con bronchite acuta"],
+      ["491.9", "Bronchite cronica non specificata"],
+      ["490", "Bronchite non specificata se acuta o cronica"]
+    ]
+  ],
+  [
+    "AZELASTINA CLORIDRATO",
+    "Tebarat®",
+    "Collirio 0,5 mg/ml, 30 contenitori monodose",
+    [
+      ["372.14", "Altre congiuntivite allergiche croniche"],
+      ["372.10", "Congiuntivite cronica non specificata"]
+    ]
+  ],
+  [
+    "BACILLUS CLAUSII",
+    "Enterogermina®",
+    "Sospensione orale 2 miliardi/5 ml<br>Sospensione orale 4 miliardi/5 ml<br>Sospensione orale 6 miliardi",
+    [
+      ["787.91", "Diarrea"],
+      ["558.9", "Gastroenterite e colite non infettiva"]
+    ]
+  ],
+  [
+    "BECLOMETASONE DIPROPIONATO",
+    "Menaderm Simplex®",
+    "Crema 0,025%, tubo 30 g<br>Lozione 0,025%, flacone 30 g",
+    [
+      ["692.9", "Dermatite da cause non specificate"],
+      ["691.8", "Altre dermatiti atopiche e affezioni correlate"],
+      ["787.03", "Vomito"],
+      ["690.10", "Dermatite seborroica non specificata"],
+      ["690.18", "Altre dermatiti seborroiche"],
+      ["698.9", "Affezioni pruriginose non specificate"],
+      ["698.3", "Lichenificazione e Lichen simplex cronico"],
+      ["696.1", "Altre psoriasi"],
+      ["709.9", "Alterazioni non specificate della cute e tessuto sottocutaneo"],
+      ["695.9", "Affezioni eritematose non specificate"]
+    ]
+  ],
+  [
+    "BETAMETASONE VALERATO",
+    "Ecoval®",
+    "Crema 1 mg/g<br>Unguento 1 mg/g<br>Emulsione cutanea 0,5 mg/g",
+    [
+      ["692.9", "Dermatite da cause non specificate"],
+      ["691.8", "Altre dermatiti atopiche e affezioni correlate"],
+      ["690.10", "Dermatite seborroica non specificata"],
+      ["690.18", "Altre dermatiti seborroiche"],
+      ["698.9", "Affezioni pruriginose non specificate"],
+      ["698.3", "Lichenificazione e Lichen simplex cronico"],
+      ["696.1", "Altre psoriasi"],
+      ["709.9", "Alterazioni non specificate della cute e tessuto sottocutaneo"],
+      ["695.9", "Affezioni eritematose non specificate"]
+    ]
+  ],
+  [
+    "BETAISTINA",
+    "Microser®<br>Vertiserc®",
+    "Compresse 8 mg<br>Compresse 16 mg<br>Compresse 24 mg<br>Gocce orali 12,5 mg/ml, flacone 30 ml",
+    [
+      ["386.0", "Malattia di Ménière non specificata"],
+      ["386.01", "Malattia di Ménière attiva cocleovestibolare"],
+      ["386.02", "Malattia di Ménière attiva cocleare"],
+      ["386.03", "Malattia di Ménière attiva vestibolare"],
+      ["386.04", "Malattia di Ménière non attiva"],
+      ["388.30", "Tinnitus non specificato"],
+      ["386.09", "Sindromi vertiginose e disturbi del labirinto non specificati"]
+    ]
+  ],
+  [
+    "BROMAZEPAM",
+    "Lexotan®",
+    "Gocce orali 2,5 mg/ml, flacone 20 ml<br>Compresse 1,5 mg<br>Compresse 3 mg",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"],
+      ["780.52", "Insonnia non specificata"],
+      ["307.41", "Difficoltà transitoria ad iniziare o a mantenere il sonno"],
+      ["307.42", "Difficoltà persistente ad iniziare o a mantenere il sonno"]
+    ]
+  ],
+  [
+    "CALCIO MEFOLINATO",
+    "Prefolic®",
+    "Compresse gastroresistenti 15 mg",
+    [
+      ["281.2", "Anemia da carenza di folati"],
+      ["E933.1", "Farmaci antineoplastici e immunosoppressori"]
+    ]
+  ],
+  [
+    "CETIRIZINA",
+    "Zirtec®",
+    "Compresse rivestite 10 mg<br>Gocce orali 10 mg/ml",
+    [
+      ["708.0", "Orticaria allergica"],
+      ["698.2", "Prurigo"]
+    ]
+  ],
+  [
+    "CLINDAMICINA FOSFATO",
+    "Cleocin®",
+    "Ovuli vaginali 100 mg<br>Crema vaginale 2%, tubo 40 g",
+    [
+      ["616.10", "Vaginite e vulvovaginite non specificata"],
+      ["616.11", "Vaginite e vulvovaginite in malattie classificate altrove"],
+      ["131.01", "Vulvovaginite"]
+    ]
+  ],
+  [
+    "CLOBAZAM",
+    "Frisium®",
+    "Capsule 10 mg",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"],
+      ["780.52", "Insonnia non specificata"],
+      ["307.41", "Difficoltà transitoria ad iniziare o a mantenere il sonno"],
+      ["307.42", "Difficoltà persistente ad iniziare o a mantenere il sonno"]
+    ]
+  ],
+  [
+    "CLORAMFENICOLO + COLLAGENASI",
+    "Iruxol®",
+    "Unguento 60 UI + 1%, tubo 30 g",
+    [
+      ["707.9", "Ulcera croniche di sedi non specificate"],
+      ["707.0", "Ulcerazioni da decubito, sito non specificato"],
+      ["454.0", "Varici degli arti inferiori con ulcera"],
+      ["686.9", "Infezione localizzate non specificate della cute e del tessuto sottocutaneo"],
+      ["958.3", "Infezione post-traumatica non classificata altrove"],
+      ["879.8", "Ferite multiple di sede non specificata, senza menzione di complicazioni"],
+      ["949.3", "Perdita dell'epidermide e del derma (terzo grado sai)"],
+      ["998.59", "Altra infezione post-operatoria"],
+      ["998.32", "Rottura di ferita chirurgica esterna"]
+    ]
+  ],
+  [
+    "CLOREXIDINA GLUCONATO",
+    "Broxodin®<br>Corsodyl®",
+    "Collutorio 0,2%, flacone 250 ml<br>Gel gengivale 200 mg/100 g<br>Spray per mucosa orale 200 mg/100 ml",
+    [
+      ["523.0", "Gengivite acuta causata da placca"],
+      ["523.01", "Gengivite acuta non causata da placca"],
+      ["523.10", "Gengivite cronica causata da placca"],
+      ["523.11", "Gengivite cronica non causata da placca"],
+      ["523.40", "Periodontite cronica non specificata"],
+      ["523.41", "Periodontite cronica localizzata"],
+      ["523.42", "Periodontite generalizzata"],
+      ["523.9", "Malattia gengivale e periodontale non specificata"],
+      ["525.9", "Malattia non specificata dei denti e delle strutture di supporto"]
+    ]
+  ],
+  [
+    "CLOTRIMAZOLO",
+    "Canesten®",
+    "Crema cutanea 1%, tubo 30 g<br>Polvere cutanea 1%<br>Spray cutaneo, soluzione 1%<br>Crema vaginale 2%",
+    [
+      ["110.4", "Dermatofitosi del piede"],
+      ["110.5", "Dermatofitosi del corpo"],
+      ["110.3", "Dermatofitosi dell'inguine e dell'aerea perianale"],
+      ["111.0", "Pityriasis versicolor"],
+      ["112.3", "Candidiasi della pelle e delle unghie"],
+      ["110.9", "Dermatofitosi di sede non specificata"],
+      ["111.9", "Dermatomicosi non specificata"]
+    ]
+  ],
+  [
+    "CLOTRIMAZOLO (VAGINALE)",
+    "Gynocanesten®",
+    "Crema vaginale 2%",
+    [
+      ["112.1", "Candidiasi della vulva e della vagina"],
+      ["112.2", "Candidiasi di altri sedi urogenitali"],
+      ["607.1", "Balanopostite"],
+      ["616.10", "Vaginite e vulvovaginite non specificata"],
+      ["623.5", "Leucorrea non specificata se infettiva"],
+      ["788.1", "Disuria"],
+      ["698.1", "Prurito degli organi genitali"],
+      ["607.89", "Altre patologie del pene"]
+    ]
+  ],
+  [
+    "DEFLAZACORT",
+    "Deflan®",
+    "Compresse 6 mg<br>Compresse 30 mg",
+    [
+      ["493.90", "Asma tipo non specificata"],
+      ["493.92", "Asma tipo non specificata con esacerbazione acuta"],
+      ["995.3", "Allergia non specificata non classificata altrove"],
+      ["708.9", "Orticaria non specificata"],
+      ["714.0", "Artrite reumatoide"],
+      ["714.9", "Poliartropatie infiammatorie non specificate"],
+      ["710.9", "Malattia diffuse del connettivo non specificate"],
+      ["447.6", "Arterite non specificata"],
+      ["692.9", "Dermatite da causa non specificata"],
+      ["696.1", "Altre psoriasi"],
+      ["708.8", "Altre orticarie"],
+      ["556.9", "Colica ulcerosa non specificata"],
+      ["358.0", "Miastenia grave senza (acuta) esacerbazione"],
+      ["340.0", "Sclerosi multipla"],
+      ["581.9", "Sindrome nefrosica con lesioni istologiche non specificate"],
+      ["283.0", "Anemie emolitiche autoimmuni"]
+    ]
+  ],
+  [
+    "DELORAZEPAM",
+    "EN®",
+    "Compresse 0,5 mg<br>Compresse 1 mg<br>Compresse 2 mg<br>Gocce orali 1 mg/ml",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"],
+      ["780.52", "Insonnia non specificata"],
+      ["307.41", "Difficoltà transitoria ad iniziare o a mantenere il sonno"],
+      ["307.42", "Difficoltà persistente ad iniziare o a mantenere il sonno"]
+    ]
+  ],
+  [
+    "DIAZEPAM",
+    "Valium®",
+    "Compresse 2 mg<br>Compresse 5 mg<br>Compresse 10 mg<br>Gocce orali 5 mg/ml, flacone 20 ml",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"],
+      ["780.52", "Insonnia non specificata"],
+      ["307.41", "Difficoltà transitoria ad iniziare o a mantenere il sonno"],
+      ["307.42", "Difficoltà persistente ad iniziare o a mantenere il sonno"]
+    ]
+  ],
+  [
+    "DICLOFENAC (orale)",
+    "Voltaren®<br>Dicloreum®",
+    "Compresse 25 mg<br>Compresse 50 mg<br>Compresse a rilascio prolungato 75 mg<br>Compresse a rilascio prolungato 100 mg<br>Compresse a rilascio prolungato 150 mg",
+    [
+      ["726.10", "Disturbi non specificati della borsa e dei tendini della spalla"],
+      ["726.60", "Entesopatia non specificata del ginocchio"],
+      ["727.00", "Sinovite e tenosinovite non specificate"],
+      ["724.4", "Neurite o radicolite toracica o lombosacrale non specificata"],
+      ["924.9", "Contusione di sede non specificata"],
+      ["845.00", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificata"],
+      ["724.3", "Sciatalgia"],
+      ["848.9", "Sito non specificato di distorsione e distrazioni"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"],
+      ["727.3", "Altre borsiti"],
+      ["726.32", "Epicondilite"],
+      ["729.5", "Dolore agli arti"]
+    ]
+  ],
+  [
+    "DICLOFENAC (topico)",
+    "Voltaren®<br>Dicloreum®",
+    "Gel 1%<br>Gel 2%<br>Gel 4%<br>Schiuma 3%<br>Cerotto 140 mg<br>Cerotto 180 mg",
+    [
+      ["726.10", "Disturbi non specificati della borsa e dei tendini della spalla"],
+      ["726.60", "Entesopatia non specificata del ginocchio"],
+      ["727.00", "Sinovite e tenosinovite non specificate"],
+      ["724.4", "Neurite o radicolite toracica o lombosacrale non specificata"],
+      ["924.9", "Contusione di sede non specificata"],
+      ["845.00", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificata"],
+      ["724.3", "Sciatalgia"],
+      ["848.9", "Sito non specificato di distorsione e distrazioni"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"],
+      ["727.3", "Altre borsiti"],
+      ["726.32", "Epicondilite"],
+      ["729.5", "Dolore agli arti"]
+    ]
+  ],
+  [
+    "DIENOGEST + ETINILESTRADIOLO",
+    "Novadien<br>Sibilla®<br>SibilletteⓇ",
+    "Compresse rivestite 2 mg + 0,03 mg",
+    [
+      ["V25.01", "Consigli generali sulla prescrizione di contraccettivi orali"],
+      ["V25.9", "Misura contraccettiva non specificata"],
+      ["626.4", "Irregolarità del ciclo mestruale"],
+      ["625.3", "Dismenorrea"],
+      ["626.2", "Mesturazioni abbondanti o frequenti"],
+      ["706.1", "Altre acni"]
+    ]
+  ],
+  [
+    "DIOSMECTITE",
+    "Diosmectal®",
+    "Sospensione orale 3 g, 30 bustine",
+    [
+      ["787.91", "Diarrea"],
+      ["558.9", "Gastroenterite e colite non infettiva"]
+    ]
+  ],
+  [
+    "DIOSMINA + ESPERIDINA",
+    "Daflon®<br>Arvenum®",
+    "Compresse 500 mg",
+    [
+      ["459.81", "Insufficienza venosa non specificata"],
+      ["455.0", "Emorroidi interne senza menzioni di complicazioni"],
+      ["455.2", "Emorroidi interne con altre complicazioni"],
+      ["455.3", "Emorroidi esterne senza menzioni di complicazioni"],
+      ["455.5", "Emorroidi esterne con altre complicazioni"],
+      ["455.6", "Emorroidi non specificate senza menzioni di complicazioni"],
+      ["455.8", "Emorroidi non specificate con altre complicazioni"]
+    ]
+  ],
+  [
+    "DOMPERIDONE",
+    "Peridon®",
+    "Compresse 10 mg",
+    [
+      ["787.02", "Nausea"],
+      ["787.03", "Vomito"],
+      ["787.01", "Nausea con vomito"]
+    ]
+  ],
+  [
+    "DROSPIRENONE",
+    "Slinda",
+    "Compresse rivestite 4 mg (schema 24+4)",
+    [
+      ["V25.01", "Consigli generali sulla prescrizione di contraccettivi orali"],
+      ["V25.40", "Sorveglianza di contraccettivo precedentemente prescritto, non specificato"],
+      ["V25.9", "Misura contraccettiva non specificata"],
+      ["626.4", "Irregolarità del ciclo mestruale"],
+      ["625.3", "Dismenorrea"],
+      ["626.2", "Mesturazioni abbondanti o frequenti"]
+    ]
+  ],
+  [
+    "DROSPIRENONE + ETINILESTRADIOLO",
+    "Drospil®<br>Yasminelle®<br>Myviolet®",
+    "Compresse rivestite 3 mg + 0,02 mg<br>Compresse 3 mg + 0,03 mg",
+    [
+      ["V25.01", "Consigli generali sulla prescrizione di contraccettivi orali"],
+      ["V25.9", "Misura contraccettiva non specificata"],
+      ["626.4", "Irregolarità del ciclo mestruale"],
+      ["625.3", "Dismenorrea"],
+      ["626.2", "Mesturazioni abbondanti o frequenti"]
+    ]
+  ],
+  [
+    "ECONAZOLO NITRATO (cutaneo)",
+    "Pevaryl®",
+    "Crema 1%<br>Emulsione cutanea 1%<br>Polvere cutanea 1%",
+    [
+      ["110.9", "Dermatofitosi di sede non specificata"],
+      ["110.5", "Dermatofitosi del corpo"],
+      ["110.4", "Dermatofitosi del piede"],
+      ["110.2", "Dermatofitosi della mano"],
+      ["112.9", "Candidiasi di sede non specificata"],
+      ["112.3", "Candidiasi della pelle e delle unghie"],
+      ["110.3", "Dermatofitosi dell'inguine e dell'aerea perianale"],
+      ["111.0", "Pityriasis versicolor"]
+    ]
+  ],
+  [
+    "ECONAZOLO NITRATO (VAGINALE)",
+    "Pevaryl®",
+    "Ovuli vaginali 50 mg<br>Ovuli vaginali 150 mg",
+    [
+      ["112.1", "Candidiasi della vulva e della vagina"],
+      ["112.2", "Candidiasi di altri sedi urogenitali"],
+      ["112.9", "Candidiasi di sede non specificata"],
+      ["616.10", "Vaginite e vulvovaginite non specificata"]
+    ]
+  ],
+  [
+    "ERDOSTEINA",
+    "Esteclin®",
+    "Capsule 300 mg<br>Bustine 225 mg<br>Sospensione orale 175 mg/5 ml",
+    [
+      ["466.0", "Bronchite acuta"],
+      ["466.1", "Bronchiolite acuta da altri agenti infettivi"],
+      ["491.0", "Bronchite cronica semplice"],
+      ["491.1", "Bronchite cronica mucopurulenta"],
+      ["491.20", "Bronchite cronica ostruttiva senza esacerbazione"],
+      ["491.21", "Bronchite cronica ostruttiva con esacerbazione"],
+      ["491.22", "Bronchite cronica ostruttiva con bronchite acuta"],
+      ["491.9", "Bronchite cronica non specificata"],
+      ["490.0", "Bronchite non specificata se acuta o cronica"]
+    ]
+  ],
+  [
+    "ETINILESTRADIOLO + NORGESTIMATO",
+    "Briladona®",
+    "Compresse 0,25 mg + 0,035 mg",
+    [
+      ["V25.01", "Consigli generali sulla prescrizione di contraccettivi orali"],
+      ["V25.9", "Misura contraccettiva non specificata"],
+      ["626.4", "Irregolarità del ciclo mestruale"],
+      ["625.3", "Dismenorrea"],
+      ["626.2", "Mesturazioni abbondanti o frequenti"]
+    ]
+  ],
+  [
+    "ETIZOLAM",
+    "Depas<br>PasadenⓇ",
+    "Compresse rivestite 0,5 mg<br>Compresse rivestite 1 mg<br>Gocce orali 0,5 mg/ml, flacone 30 ml",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"],
+      ["780.52", "Insonnia non specificata"],
+      ["307.41", "Difficoltà transitoria ad iniziare o a mantenere il sonno"],
+      ["307.42", "Difficoltà persistente ad iniziare o a mantenere il sonno"]
+    ]
+  ],
+  [
+    "FLOROGLUCINOLO + MEGLUCINOLO",
+    "Spasmex®",
+    "Compresse 80mg+80 mg",
+    [
+      ["788.0", "Colica renale"],
+      ["789.0", "Dolore addominale di sede non specificata"],
+      ["574.0", "Calcolosi della colecisti con colecistite acuta senza menzione di ostruzione"],
+      ["574.01", "Calcolosi della colecisti con colecistite acuta con ostruzione"],
+      ["574.30", "Calcolosi del dotto biliari con colecistite acuta senza menzione di ostruzione"],
+      ["574.31", "Calcolosi del dotto biliari con colecistite acuta con ostruzione"],
+      ["574.40", "Calcolosi del dotto biliari con altra colecistite senza menzione di ostruzione"],
+      ["574.41", "Calcolosi del dotto biliari con altra colecistite con ostruzione"],
+      ["574.70", "Calcolosi della colicisti e del dotto biliare con altre forme di colicistite senza menzione di ostruzione"],
+      ["574.71", "Calcolosi della colicisti e del dotto biliare con altre forme di colicistite con ostruzione"],
+      ["574.80", "Calcolosi della colicisti e del dotto biliare con colicistite acuta e cronica senza menzione di ostruzione"],
+      ["574.81", "Calcolosi della colicisti e del dotto biliare con colicistite acuta e cronica con ostruzione"]
+    ]
+  ],
+  [
+    "FLUOCINOLONE ACETONIDE + KETOCAINA",
+    "Proctolyn®",
+    "Crema rettale, tubo 30 g",
+    [
+      ["455.0", "Emorroidi interne senza menzioni di complicazioni"],
+      ["455.2", "Emorroidi interne con altre complicazioni"],
+      ["455.3", "Emorroidi esterne senza menzioni di complicazioni"],
+      ["455.4", "Emorroidi esterne trombizzate"],
+      ["455.5", "Emorroidi esterne con altre complicazioni"],
+      ["455.6", "Emorroidi non specificate senza menzioni di complicazioni"],
+      ["455.7", "Emorroidi non specificate trombizzate"],
+      ["569.49", "Altri disturbi specificati del retto e dell'ano"]
+    ]
+  ],
+  [
+    "GENTAMICINA",
+    "Gentalyn®",
+    "Crema 0,1%, tubo 30 g",
+    [
+      ["686.9", "Infezione localizzate non specificata della cute e del tessuto sottocutaneo"],
+      ["686.0", "Pioderma non specificato"],
+      ["704.8", "Altre malattie dei peli e dei follicoli piliferi"],
+      ["680.9", "Foruncolo e favo di altre sedi non specificate"],
+      ["454.0", "Varici degli arti inferiori con ulcera"],
+      ["958.3", "Infezione post-traumatica non classificata altrove"],
+      ["919.3", "Vescicola con infezione"],
+      ["706.1", "Altre acni"],
+      ["696.1", "Altri psoriasi"],
+      ["695.89", "Altre affezioni eritematose specificate"],
+      ["681.02", "Onichia e paronichia delle dita e della mano"]
+    ]
+  ],
+  [
+    "GLICEROLO",
+    "Carlo Erba®<br>Verolax®",
+    "Supposte adulti 2250 mg<br>Supposte bambini 1375 mg<br>Supposte prima infanzia 900 mg<br>Soluzione rettale",
+    [
+      ["564.0", "Costipazione non specificata"],
+      ["564.01", "Costipazione con transito rallentato"],
+      ["564.09", "Costipazione"]
+    ]
+  ],
+  [
+    "IBUPROFENE (gel)",
+    "Lasonil®",
+    "Gel 10%",
+    [
+      ["726.10", "Disturbi non specificati della borsa e dei tendini della spalla"],
+      ["726.60", "Entesopatia non specificata del ginocchio"],
+      ["727.00", "Sinovite e tenosinovite non specificate"],
+      ["724.4", "Neurite o radicolite toracica o lombosacrale non specificata"],
+      ["924.9", "Contusione di sede non specificata"],
+      ["845.00", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificata"],
+      ["724.3", "Sciatalgia"],
+      ["848.9", "Sito non specificato di distorsione e distrazioni"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"],
+      ["727.3", "Altre borsiti"],
+      ["726.32", "Epicondilite"],
+      ["729.5", "Dolore agli arti"]
+    ]
+  ],
+  [
+    "IBUPROFENE (sistemico)",
+    "Brufen®<br>Nurofen®",
+    "Compresse 200/400/600/800 mg RP<br>Sciroppo 100 mg/5 ml<br>Sciroppo 200 mg/5 ml<br>Supposte 60 mg<br>Supposte 125 mg",
+    [
+      ["338.19", "Altri dolori acuti"],
+      ["338.18", "Altri dolori acuti post-operatorio"],
+      ["784.0", "Cefalea"],
+      ["728.85", "Contrattura muscolare"],
+      ["625.3", "Dismenorrea"],
+      ["845.00", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["338.11", "Dolore acuto da trauma"],
+      ["729.5", "Dolore agli arti"],
+      ["346.01", "Emicrania classica non trattabile"],
+      ["346.11", "Emicrania comune non trattabile"],
+      ["346.10", "Emicrania comune senza menzione di emicrania non trattabile"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["780.6", "Febbre"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificate"],
+      ["729.2", "Nevralgia, neurite e radicolite non specificate"],
+      ["724.3", "Sciatalgia"],
+      ["848.9", "Sito non specificato di distorsioni e distrazioni"],
+      ["784.1", "Faringodinia"],
+      ["525.9", "Malattia non specificata dei denti e delle strutture di supporto"],
+      ["388.70", "Otalgia non specificata"],
+      ["487.1", "Influenza con altre manifestazioni respiratorie"],
+      ["460", "Rinofaringite acuta (Raffreddore comune)"]
+    ]
+  ],
+  [
+    "IDROCORTISONE BUTIRRATO",
+    "Locoidon®",
+    "Crema 0,1%, tubo 30 g",
+    [
+      ["692.9", "Dermatite da cause non specificate"],
+      ["691.8", "Altri dermatiti atopiche e affezioni correlate"],
+      ["690.10", "Dermatite seborroica, non specificata"],
+      ["698.9", "Affezioni pruriginose non specificate"]
+    ]
+  ],
+  [
+    "IDROCORTISONE SODIO FOSFATO",
+    "Sofacor",
+    "Collirio, contenitori monodose 0,4 ml",
+    [
+      ["372.14", "Altre congiuntivite allergiche croniche"],
+      ["372.10", "Congiuntivite chronic non specificata"],
+      ["372.00", "Ulcera corneale non specificata"],
+      ["370.20", "Cheratite superficiale non specificata"],
+      ["373.00", "Blefarite non specificata"],
+      ["364.00", "Iridociclite acuta e subacuta non specificata"],
+      ["379.90", "Disturbo dell'occhio non specificata"],
+      ["V45.69", "Altri stati post-chirurgici successivi a chirurgia dell'occhio e dei suoi annessi"]
+    ]
+  ],
+  [
+    "IODOPOVIDONE",
+    "Betadine®",
+    "Soluzione cutanea 10% 125ml<br>Gel 10%",
+    [
+      ["919.0", "Abrasione o ustione da attrito senza menzione di infezione"],
+      ["879.8", "Ferite (multiple) di sede non specificata, senza menzione di complicazioni"],
+      ["707.0", "Ulcerazioni da decubito, sito non specificato"]
+    ]
+  ],
+  [
+    "KETOCONAZOLO",
+    "Nizoral",
+    "Crema 2%",
+    [
+      ["110.9", "Dermatofitosi di sede non specificata"],
+      ["110.5", "Dermatofitosi del corpo"],
+      ["110.4", "Dermatofitosi del piede"],
+      ["110.2", "Dermatofitosi della mano"],
+      ["110.3", "Dermatofitosi dell'inguine e dell'aerea perianale"],
+      ["112.9", "Candidiasi di sede non specificata"],
+      ["112.3", "Candidiasi della pelle e delle unghie"],
+      ["111.0", "Pityriasis versicolor"],
+      ["690.10", "Dermatite seborroica non specificata"],
+      ["690.18", "Altre dermatiti seborroiche"]
+    ]
+  ],
+  [
+    "KETOPROFENE SALE DI LISINA",
+    "Oki",
+    "Granulato per soluzione orale 80 mg, 30 bustine",
+    [
+      ["720.0", "Spondilite anchilosante"],
+      ["726.10", "Disturbi non specificati della borsa e dei tendini della spalla"],
+      ["727.0", "Sinovite e tenosinovite non specificate"],
+      ["726.60", "Entesopatia non specificata del ginocchio"],
+      ["726.91", "Esostosi in sede non specificata"],
+      ["845.0", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["848.9", "Sito non specificato di distorsioni e distrazioni"],
+      ["924.9", "Contusione di sede non specificata"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"],
+      ["523.9", "Malattia gengivale e periodontale non specificata"],
+      ["528.9", "Altre e non specificate malattie dei tessuti molli orali"],
+      ["464.0", "Laringite acuta senza menzione di ostruzione"],
+      ["595.9", "Cistite non specificata"],
+      ["601.9", "Prostatite non specificata"],
+      ["597.80", "Uretrite non specificata"],
+      ["519.9", "Malattie dell'apparato respiratorio non specificato"]
+    ]
+  ],
+  [
+    "LATTULOSIO",
+    "Laevolac®",
+    "Sciroppo 66,7% 180ml",
+    [
+      ["564.0", "Costipazione non specificata"],
+      ["564.01", "Costipazione con transito rallentato"],
+      ["564.09", "Costipazione"]
+    ]
+  ],
+  [
+    "LEVOACETILCARNITINA CLORIDRATO",
+    "Nicetile",
+    "Compresse gastroresistenti 500 mg<br>Bustine 500 mg",
+    [
+      ["356.9", "Neuropatia periferica non specificata"],
+      ["355.9", "Mononeurite di sede non specificata"],
+      ["357.2", "Polineuropatia in diabete"],
+      ["357.4", "Polineuropatia in altre malattie classificate altrove"],
+      ["250.60", "Diabete di tipo II o non specificato con complicazioni neurologiche"],
+      ["357.6", "Polineuropatia da farmaci"]
+    ]
+  ],
+  [
+    "LEVODROPROPIZINA",
+    "Levotuss®",
+    "Sciroppo 30 mg/5 ml 200ml",
+    [
+      ["786.2", "Tosse"],
+      ["460.0", "Bronchite acuta"],
+      ["490.0", "Bronchite non specificata se acuta o cronica"]
+    ]
+  ],
+  [
+    "LEVOSULPIRIDE",
+    "Levobren<br>Levopraid®",
+    "Compresse 25 mg<br>Gocce orali 25 mg/ml",
+    [
+      ["787.1", "Pirosi"],
+      ["536.3", "Gastroparesi"],
+      ["787.3", "Flatulenza, eruttazioni e colica gassosa"],
+      ["564.1", "Colon irritabile"],
+      ["787.01", "Nausea con vomito"],
+      ["787.02", "Nausea"],
+      ["787.03", "Vomito"],
+      ["386.00", "Malattia di ménière non specificata"],
+      ["386.01", "Malattia di Ménière attiva cocleovestibolare"],
+      ["386.02", "Malattia di Ménière attiva cocleare"],
+      ["386.03", "Malattia di Ménière attiva vestibolare"],
+      ["386.04", "Mlattia di Ménière non attiva"],
+      ["388.30", "Tinnitus non specificato"],
+      ["536.8", "Dispepsia e altri disturbi specificati della funzione gastrica"],
+      ["438.85", "Vertigine"]
+    ]
+  ],
+  [
+    "LIEVITO DI BIRRA",
+    "Preparazione H®",
+    "Unguento 1,08% 50 g<br>Supposte 23 mg",
+    [
+      ["455.0", "Emorroidi interne senza menzioni di complicazioni"],
+      ["455.3", "Emorroidi esterne senza menzioni di complicazioni"],
+      ["455.6", "Emorroidi non specificate senza menzioni di complicazioni"],
+      ["569.49", "Altri disturbi specificati del retto e dell'ano"]
+    ]
+  ],
+  [
+    "LITIO SOLFATO",
+    "Resilient®",
+    "Compresse a rilascio prolungato 83 mg",
+    [
+      ["296.00", "Mania, episodio singolo non specificato"],
+      ["296.01", "Mania, episodio singolo lieve"],
+      ["296.02", "Mania, episodio singolo moderato"],
+      ["296.03", "Mania, episodio singolo grave senza menzioni di comportamento psicotico"],
+      ["296.04", "Mania, episodio singolo grave con comportamento psicotico"],
+      ["296.05", "Mania, episodio singolo in remissione parziale o non specificata"],
+      ["296.06", "Mania, episodio singolo in remissione completa"],
+      ["296.10", "Mania, episodio ricorrente non specificato"],
+      ["296.11", "Mania, episodio ricorrente lieve"],
+      ["296.40", "Sindrome affettiva bipolare, episodio maniacale non specificato"],
+      ["296.41", "Sindrome affettiva bipolare, episodio maniacale lieve"],
+      ["296.42", "Sindrome affettiva bipolare, episodio maniacale moderato"],
+      ["296.43", "Sindrome affettiva bipolare, episodio maniacale grave senza menzione di comportamento psicotico"],
+      ["296.44", "Sindrome affettiva bipolare, episodio maniacale grave con comportamento psicotico"],
+      ["296.45", "Sindrome affettiva bipolare, episodio maniacale in remissione parziale o non specificata"],
+      ["296.46", "Sindrome affettiva bipolare, episodio maniacale in remissione completa"]
+    ]
+  ],
+  [
+    "LOPERAMIDE",
+    "Imodium®",
+    "Compresse/Capsule 2 mg",
+    [
+      ["787.91", "Diarrea"]
+    ]
+  ],
+  [
+    "LORAZEPAM",
+    "Tavor®",
+    "Compresse 1 mg<br>Compresse 2,5 mg<br>Gocce 20 mg/10 ml",
+    [
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.02", "Disturbo ansioso generalizzato"],
+      ["300.09", "Altri stati ansiosi"],
+      ["780.52", "Insonnia non specificata"],
+      ["307.41", "Difficoltà transitoria ad iniziare o a mantenere il sonno"],
+      ["307.42", "Difficoltà persistente ad iniziare o a mantenere il sonno"]
+    ]
+  ],
+  [
+    "MACROGOL",
+    "Movicol®",
+    "Polvere per soluzione orale 13,8g 20 bustine<br>Concentrato 500ml",
+    [
+      ["564.00", "Costipazione non specificata"],
+      ["564.01", "Costipazione con transito rallentato"],
+      ["564.02", "Costipazione con disfunzione dello sbocco"],
+      ["564.09", "Costipazione"]
+    ]
+  ],
+  [
+    "MESOGLICANO SALE SODICO",
+    "Prisma®",
+    "Capsule 24 mg<br>Capsule 50 mg<br>Soluzione iniettabile intramuscolare 30 mg/ml",
+    [
+      ["459.81", "Insufficienza periferica venosa non specificata"],
+      ["454.9", "Varici degli arti inferiori asintomatiche"],
+      ["459.9", "Disturbi non specificati del sistema circolatorio"],
+      ["454.0", "Varici degli arti inferiori con ulcera"],
+      ["707.9", "Ulcerazioni croniche di sedi non specificate"],
+      ["443.9", "Malattia vascolare periferica non specificata"]
+    ]
+  ],
+  [
+    "METOCLOPRAMIDE",
+    "Plasil®",
+    "Compresse 10 mg<br>Sciroppo 10 mg/10 ml",
+    [
+      ["787.02", "Nausea"],
+      ["787.03", "Vomito"],
+      ["787.01", "Nausea con vomito"]
+    ]
+  ],
+  [
+    "MICONAZOLO (cutaneo)",
+    "Daktarin® / Micotef®",
+    "Crema cutanea 2% 30g<br>Polvere cutanea 2%",
+    [
+      ["110.9", "Dermatofitosi di sede non specificata"],
+      ["110.5", "Dermatofitosi del corpo"],
+      ["110.4", "Dermatofitosi del piede"],
+      ["110.2", "Dermatofitosi della mano"],
+      ["112.9", "Candidiasi di sede non specificata"],
+      ["112.3", "Candidiasi della pelle e delle unghie"]
+    ]
+  ],
+  [
+    "MICONAZOLO NITRATO (vaginale)",
+    "Micotef® / Miconal®",
+    "Crema vaginale 2%<br>Ovuli 100 mg<br>Ovuli 50 mg",
+    [
+      ["112.1", "Candidiasi della vulva e della vagina"],
+      ["112.2", "Candidiasi di altri sedi urogenitali"],
+      ["616.10", "Vaginite e vulvovaginite non specificata"],
+      ["623.5", "Leucorrea non specificata se infettiva"],
+      ["698.1", "Prurito degli organi genitali"]
+    ]
+  ],
+  [
+    "MORNIFLUMATO",
+    "Flomax®",
+    "Granulato sospensione orale 350 mg<br>Compresse 700 mg",
+    [
+      ["338.19", "Altri dolori acuti"],
+      ["464.00", "Laringite acuta senza menzione di ostruzione"],
+      ["382.9", "Otite media non specificata"],
+      ["381.4", "Otiti medie non suppurative non specificate se acute o croniche"],
+      ["461.9", "Sinusite acuta non specificata"],
+      ["462.0", "Faringite acuta"]
+    ]
+  ],
+  [
+    "MUPIROCINA",
+    "Bactroban®",
+    "Crema 2% 15g",
+    [
+      ["686.9", "Infezione localizzate non specificate della cute"],
+      ["704.8", "Altre malattie specifiche dei peli e follicoli piliferi"],
+      ["919.3", "Vescicola con infezione"],
+      ["958.3", "Infezione post-traumatica non classificata altrove"],
+      ["680.9", "Foruncolo e favo di altre sedi non specificate"],
+      ["707.9", "Ulcerazioni croniche di sedi non specificate"]
+    ]
+  ],
+  [
+    "LIDOCAINA CLORIDRATO + NIFEDIPINA",
+    "Antrolin®",
+    "Crema rettale 0,3%+1,5% 30g",
+    [
+      ["565.0", "Ragade anale"],
+      ["569.42", "Dolore anale e rettale"],
+      ["564.6", "Spasmo anale"]
+    ]
+  ],
+  [
+    "NAPROSSENE (gel)",
+    "Momendol Gel®",
+    "Gel 10%",
+    [
+      ["726.10", "Disturbi non specificati della borsa e dei tendini della spalla"],
+      ["726.60", "Entesopatia non specificata del ginocchio"],
+      ["727.00", "Sinovite e tenosinovite non specificate"],
+      ["724.4", "Neurite o radicolite toracica o lombosacrale non specificata"],
+      ["924.9", "Contusione di sede non specificata"],
+      ["845.00", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificata"],
+      ["724.3", "Sciatalgia"],
+      ["848.9", "Sito non specificato di distorsione e distrazioni"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"],
+      ["727.3", "Altre borsiti"],
+      ["726.32", "Epicondilite"],
+      ["729.5", "Dolore agli arti"]
+    ]
+  ],
+  [
+    "NAPROSSENE (sistemico)",
+    "Momendol® / Synflex® / Naprosyn®",
+    "Capsule 220mg<br>Compresse 500mg<br>Compresse 550mg<br>Granulato 550mg",
+    [
+      ["338.19", "Altri dolori acuti"],
+      ["338.18", "Altri dolori acuti post-operatorio"],
+      ["723.1", "Cervicalgia"],
+      ["728.85", "Contrattura muscolare"],
+      ["625.3", "Dismenorrea"],
+      ["845.0", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["338.11", "Dolore acuto da trauma"],
+      ["729.5", "Dolore agli arti"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificate"],
+      ["724.3", "Sciatalgia"],
+      ["848.9", "Sito non specificato di distorsione e distrazioni"]
+    ]
+  ],
+  [
+    "NIMESULIDE",
+    "Aulin®",
+    "Granulato per sospensione orale 100 mg, 30 bustine",
+    [
+      ["338.19", "Altri dolori acuti"],
+      ["625.3", "Dismenorrea"],
+      ["719.40", "Artralgia"]
+    ]
+  ],
+  [
+    "PARACETAMOLO",
+    "Tachipirina®",
+    "Compresse 250 mg<br>Compresse 500 mg<br>Compresse 1.000 mg<br>Supposte 62,5 mg<br>Supposte 125 mg<br>Supposte 250 mg<br>Supposte 500 mg<br>Supposte 1.000 mg<br>Gocce orali 10%<br>Sciroppo 120 mg/5 ml",
+    [
+      ["719.40", "Artralgia"],
+      ["784.0", "Cefalea"],
+      ["625.3", "Dismenorrea"],
+      ["780.6", "Febbre"],
+      ["487.8", "Influenza con altre manifestazioni"],
+      ["723.1", "Cervicalgia"],
+      ["724.2", "Lombalgia"],
+      ["388.70", "Otalgia non specificata"],
+      ["784.1", "Faringodinia"],
+      ["487.1", "Influenza con altre manifestazioni respiratorie"],
+      ["E935.4", "Analgesici aromatici non classificati altrove"]
+    ]
+  ],
+  [
+    "PERMETRINA",
+    "Scabianil",
+    "Crema 5%",
+    [
+      ["133.0", "Scabbia"],
+      ["133.8", "Altre acariasi"],
+      ["133.9", "Acariasi non specificata"]
+    ]
+  ],
+  [
+    "PIROXICAM",
+    "Feldene",
+    "Capsule 20 mg",
+    [
+      ["720.0", "Spondilite anchilosante"],
+      ["720.9", "Spondilopatia infiammatoria non specificata"],
+      ["726.10", "Disturbi non specificati della borsa e dei tendini della spalla"],
+      ["727.0", "Sinovite e tenosinovite non specificate"],
+      ["726.60", "Entesopatia non specificata del ginocchio"],
+      ["726.90", "Entesopatia di sede non specificata"],
+      ["729.1", "Mialgia e miosite non specificata"],
+      ["729.5", "Dolore degli arti"],
+      ["845.0", "Distorsione e distrazione di sito non specificato della caviglia"],
+      ["848.9", "Sito non specificato di distorsioni e distrazioni"],
+      ["924.9", "Contusione di sede non specificata"],
+      ["959.9", "Altri e non specificati traumatismi di sedi non specificate"]
+    ]
+  ],
+  [
+    "PROMAZINA",
+    "Talofen",
+    "Gocce orali 30 ml",
+    [
+      ["295.10", "Tipo disorganizzato, non specificato"],
+      ["295.20", "Tipo disorganizzato, non specificato"],
+      ["295.30", "Tipo paranoide, non specificato"],
+      ["295.60", "Schizofrenia residuale, non specificato"],
+      ["295.90", "Schizofrenia non specificata, non specificato"],
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.9", "Disturbi psichici non psicotici non specificati"],
+      ["297.1", "Disturbo delirante"],
+      ["296.04", "Mania, episodio singolo, grave, con comportamento psicotico"],
+      ["296.14", "Mania, episodio ricorrente, grave, con comportamento psicotico"],
+      ["296.44", "Sindrome affettiva bipolare, episodio maniacale, grave, con comportamento psicotico"],
+      ["296.54", "Sindrome affettiva bipolare, episodio depressivo, grave, con comportamento psicotico"],
+      ["312.00", "Disturbo della condotta con ridotta socializzazione, tipo aggressivo, non specificato"],
+      ["312.9", "Disturbo della condotta non specificato"],
+      ["799.2", "Nervosismo"],
+      ["780.09", "Altre alterazioni della coscienza"],
+      ["295.70", "Tipo schizoaffettivo, non specificato"],
+      ["298.1", "Psicosi, tipo agitato"],
+      ["298.9", "Psicosi non specificata"],
+      ["780.1", "Allucinazioni"],
+      ["295.72", "Tipo schizoaffettivo, cronico"]
+    ]
+  ],
+  [
+    "PROMETAZINA",
+    "Mistick Antistaminico®",
+    "Crema 2%",
+    [
+      ["692.9", "Dermatite da cause non specificate"],
+      ["708.9", "Orticaria, non specificata"],
+      ["995.3", "Allergia, non specificata, non classificata altrove"],
+      ["698.9", "Affezioni pruriginose non specificate"],
+      ["919.4", "Puntura d'insetto, non velenoso"],
+      ["695.9", "Affezioni eritematose non specificate"]
+    ]
+  ],
+  [
+    "SCOPOLAMINA BUTILBROMURO",
+    "Buscopan®",
+    "Compresse rivestite 10mg",
+    [
+      ["536.8", "Dispepsia e altri disturbi specificati della funzione gastrica"],
+      ["789.07", "Dolore addominale generalizzato"],
+      ["788.0", "Colica renale"]
+    ]
+  ],
+  [
+    "SULFADIAZINA ARGENTICA",
+    "Sofargen®",
+    "Crema 1%",
+    [
+      ["949.1", "Eritema (primo grado sai)"],
+      ["949.2", "Vescicole, perdita dell'epidermide (secondo grado sai)"],
+      ["949.3", "Perdita dell'epidermide e del derma (terzo grado sai)"],
+      ["958.3", "Infezione post-traumatica non classificata altrove"],
+      ["686.9", "Infezioni localizzate non specificate della cute e del tessuto sottocutaneo"],
+      ["919.3", "Vescicola con infezione"],
+      ["998.59", "Altra infezione post-operatoria"],
+      ["707.9", "Ulcerazioni croniche di sedi non specificate"],
+      ["707.0", "Ulcerazione da decubito, sito non specificato"],
+      ["454.0", "Varici degli arti inferiori con ulcera"]
+    ]
+  ],
+  [
+    "TIOCONAZOLO",
+    "Trosyd",
+    "Crema vaginale 1%",
+    [
+      ["112.1", "Candidiasi della vulva e della vagina"],
+      ["112.2", "Candidiasi di altri sedi urogenitali"],
+      ["112.9", "Candidiasi di sede non specificata"],
+      ["616.10", "Vaginite e vulvovaginite non specificata"]
+    ]
+  ],
+  [
+    "TIOCOLCHICOSIDE",
+    "Muscoril® / Miotens",
+    "Capsule 4 mg<br>Capsule 8 mg<br>Soluzione iniettabile intramuscolare 4 mg/2 ml",
+    [
+      ["728.85", "Contrattura muscolare"],
+      ["724.2", "Lombalgia"],
+      ["729.1", "Mialgia e miosite non specificate"],
+      ["729.2", "Nevralgia, neurite e radicolite non specificate"],
+      ["724.3", "Sciatalgia"]
+    ]
+  ],
+  [
+    "TOBRAMICINA",
+    "Tobral",
+    "Collirio 0,3%<br>Unguento oftalmico 0,3%",
+    [
+      ["372.00", "Congiuntivite acuta non specificata"],
+      ["372.03", "Altre congiuntivite mucopurulente"],
+      ["373.11", "Congiuntivite cronica semplice"],
+      ["373.00", "Blefarite non specificata"],
+      ["370.20", "Cheratite superficiale non specificata"],
+      ["373.12", "Orzaiolo interno"],
+      ["375.30", "Dacriocistite non specificata"]
+    ]
+  ],
+  [
+    "TRIMEBUTINA",
+    "Debridat®",
+    "Capsule molli 150 mg<br>Granulato sospensione orale 1,8 mg/ml",
+    [
+      ["564.1", "Sindrome dell'intestino irritabile"],
+      ["536.8", "Dispepsia e altri disturbi specificati della funzione gastrica"],
+      ["789.00", "Dolore addominale non specificato"]
+    ]
+  ],
+  [
+    "ZUCLOPENTIXOLO DICLORIDRATO",
+    "Clopixol®",
+    "Gocce 20 mg/ml<br>Compresse 10 mg<br>Compresse 25 mg",
+    [
+      ["295.10", "Tipo disorganizzato, non specificato"],
+      ["295.20", "Tipo catatonico, non specificato"],
+      ["295.30", "Tipo paranoide, non specificato"],
+      ["295.60", "Schizofrenia residuale, non specificata"],
+      ["295.90", "Schizofrenia non specificata"],
+      ["300.00", "Stato ansioso non specificato"],
+      ["300.9", "Disturbo psichici non psicotici non specificati"],
+      ["297.1", "Disturbo delirante"],
+      ["296.04", "Mania, episodio singolo, grave, con comportamento psicotico"],
+      ["296.14", "Mania, episodio ricorrente, grave, con comportamento psicotico"],
+      ["296.44", "Sindrome affettiva bipolare, episodio maniacale grave"],
+      ["296.54", "Sindrome affettiva bipolare, episodio depressivo grave"],
+      ["312.0", "Disturbo della condotta con ridotta socializzazione"],
+      ["312.9", "Disturbo della condotta non specificato"],
+      ["799.2", "Nervosismo"],
+      ["780.09", "Altre alterazioni della coscienza"],
+      ["295.70", "Tipo schizoaffettivo non specificato"],
+      ["298.1", "Psicosi tipo agitato"],
+      ["298.9", "Psicosi non specificata"],
+      ["780.1", "Allucinazioni"],
+      ["295.72", "Tipo schizoaffettivo, cronico"]
+    ]
+  ]
+];
+
+var activeChip = null;
+var currentList = farmaci.slice();
+
+function renderTable(data) {
+  var tbody = document.getElementById("tbl-body");
+  var ftable = document.getElementById("ftable");
+  var noRes = document.getElementById("no-results");
+  var bar = document.getElementById("count-bar");
+  
+  currentList = data;
+  
+  if (!tbody) return;
+  
+  if (!data.length) {
+    tbody.innerHTML = "";
+    ftable.style.display = "none";
+    noRes.style.display = "block";
+    bar.textContent = "0 farmaci trovati";
+    return;
+  }
+  
+  ftable.style.display = "";
+  noRes.style.display = "none";
+  bar.textContent = data.length + " farmaci trovati";
+  
+  tbody.innerHTML = data.map(function(f, index) {
+    // Genera la sintesi strutturata dei primi 3 ICD-9
+    var summaryIcd = f[3].slice(0, 3).map(function(p) {
+      return "<span class='icd-badge'>" + p[0] + "</span>";
+    }).join("");
+    
+    if (f[3].length > 3) {
+      summaryIcd += "<span class='icd-more'>+altri " + (f[3].length - 3) + "</span>";
+    }
+    
+    // MODIFICA QUI: Molecola ed Esempio Commerciale sono uniti nello stesso <td>
+    return "<tr style='cursor:pointer;' onclick='showModal(" + index + ")'>" +
+      "<td>" + 
+        "<div class='p-attivo'>" + f[0] + "</div>" + 
+        "<div class='m-commerciale'>" + f[1] + "</div>" + 
+      "</td>" +
+      "<td><div class='f-farmaceutica'>" + f[2] + "</div></td>" +
+      "<td><div class='icd-badge-container'>" + summaryIcd + "</div></td>" +
+      "</tr>";
+  }).join("");
+}
+
+function showModal(index) {
+  var f = currentList[index];
+  document.getElementById("modal-title").textContent = f[0];
+  document.getElementById("modal-brand").innerHTML = f[1];
+  document.getElementById("modal-formul").innerHTML = f[2];
+  
+  document.getElementById("modal-icd-body").innerHTML = f[3].map(function(p) {
+    return "<tr>" +
+      "<td><span class='modal-code-cell'>" + p[0] + "</span></td>" +
+      "<td>" + p[1] + "</td>" +
+      "</tr>";
+  }).join("");
+  
+  document.getElementById("modal-overlay").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+function filter(q) {
+  if (!q) return farmaci.slice();
+  q = q.toLowerCase().trim();
+  return farmaci.filter(function(f) {
+    return f[0].toLowerCase().indexOf(q) >= 0 ||
+      f[1].toLowerCase().indexOf(q) >= 0 ||
+      f[2].toLowerCase().indexOf(q) >= 0 ||
+      f[3].some(function(p) {
+        return p[0].toLowerCase().indexOf(q) >= 0 || p[1].toLowerCase().indexOf(q) >= 0;
+      });
+  });
+}
+
+function onSearch() {
+  var q = document.getElementById("farmaco-search").value;
+  document.getElementById("clear-btn").style.display = q ? "block" : "none";
+  if (activeChip) { activeChip.classList.remove("active"); activeChip = null; }
+  renderTable(filter(q));
+}
+
+function clearSearch() {
+  document.getElementById("farmaco-search").value = "";
+  document.getElementById("clear-btn").style.display = "none";
+  if (activeChip) { activeChip.classList.remove("active"); activeChip = null; }
+  renderTable(farmaci.slice());
+}
+
+function chipClick(el, code) {
+  var currentSearch = document.getElementById("farmaco-search").value;
+  if (activeChip === el && !currentSearch) {
+    el.classList.remove("active"); activeChip = null;
+    renderTable(farmaci.slice()); return;
+  }
+  if (activeChip) activeChip.classList.remove("active");
+  activeChip = el; el.classList.add("active");
+  document.getElementById("farmaco-search").value = "";
+  document.getElementById("clear-btn").style.display = "none";
+  renderTable(filter(code));
+}
+
+window.onload = function() {
+  var c = document.getElementById("top-chips");
+  if (c) {
+    c.innerHTML = topIcd.map(function(t) {
+      return "<div class='chip' onclick='chipClick(this,\"" + t[0] + "\")'>" +
+        "<span class='chip-code'>" + t[0] + "</span>" +
+        "<span class='chip-desc'>" + t[1] + "</span>" +
+        "</div>";
+    }).join("");
+  }
+  renderTable(farmaci.slice());
+};
+</script>
+</body>
+</html>
